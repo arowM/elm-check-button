@@ -10,6 +10,10 @@ module CheckButton
     , setActive
     , setDisabled
     , setLabel
+    , getIsChecked
+    , getIsActive
+    , getValue
+    , getLabel
     , view
     , css
     )
@@ -26,7 +30,7 @@ module CheckButton
 
 @docs defaultModel
 
-## Modifiers
+## Setters
 
 @docs setChecked
 @docs setUnchecked
@@ -34,6 +38,13 @@ module CheckButton
 @docs setActive
 @docs setDisabled
 @docs setLabel
+
+## Getters
+
+@docs getIsChecked
+@docs getIsActive
+@docs getValue
+@docs getLabel
 
 # Renderers
 
@@ -51,7 +62,7 @@ module CheckButton
 
 import Css exposing (Stylesheet)
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Attributes as Attributes exposing (..)
 import Html.CssHelpers as CssHelpers exposing (withNamespace)
 import Html.Events exposing (..)
 import CheckButton.Css as Css exposing (CssClasses(..))
@@ -179,6 +190,34 @@ setLabel label (CheckButton button) =
 
 
 
+-- Getters
+
+
+{-| Get if a check button is checked.
+-}
+getIsChecked : Model -> Bool
+getIsChecked (CheckButton { isChecked }) = isChecked
+
+
+{-| Get if a check button is active.
+-}
+getIsActive : Model -> Bool
+getIsActive (CheckButton { isActive }) = isActive
+
+
+{-| Get value of a button.
+-}
+getValue : Model -> Value
+getValue (CheckButton { value }) = value
+
+
+{-| Get label name of a button.
+-}
+getLabel : Model -> String
+getLabel (CheckButton { label }) = label
+
+
+
 -- View
 
 
@@ -212,6 +251,7 @@ view namespace onToggle (CheckButton checkButton) =
         , name namespace
         , checked isChecked
         , onCheck onToggle
+        , Attributes.value value
         ]
         []
       , label
