@@ -60,9 +60,7 @@ module CheckButtons
 import CheckButton exposing (Namespace, Value)
 import Css exposing (Stylesheet)
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Html.CssHelpers as CssHelpers exposing (withNamespace)
-import Html.Events exposing (..)
 
 import CheckButtons.Css as Css exposing (CssClasses(..))
 
@@ -102,43 +100,43 @@ addBottomButton b (CheckButtons bs) =
   CheckButtons <| bs ++ [b]
 
 
-{-| Set states of check buttons to be checked.
+{-| Make only buttons with provided values are checked.
 -}
 setChecked : List Value -> Model -> Model
 setChecked vals (CheckButtons bs) =
   CheckButtons <|
-    List.map (modifyMember vals CheckButton.setChecked) bs
+    List.map (modifyMember vals CheckButton.setChecked CheckButton.setUnchecked) bs
 
 
-{-| Set states of check buttons to be unchecked.
+{-| Make only buttons with provided values are unchecked.
 -}
 setUnchecked : List Value -> Model -> Model
 setUnchecked vals (CheckButtons bs) =
   CheckButtons <|
-    List.map (modifyMember vals CheckButton.setUnchecked) bs
+    List.map (modifyMember vals CheckButton.setUnchecked CheckButton.setChecked) bs
 
 
-{-| Set states of check buttons to be active.
+{-| Make only buttons with provided values are active.
 -}
 setActive : List Value -> Model -> Model
 setActive vals (CheckButtons bs) =
   CheckButtons <|
-    List.map (modifyMember vals CheckButton.setActive) bs
+    List.map (modifyMember vals CheckButton.setActive CheckButton.setDisabled) bs
 
 
-{-| Set states of check buttons to be disabled.
+{-| Make only buttons with provided values are disabled.
 -}
 setDisabled : List Value -> Model -> Model
 setDisabled vals (CheckButtons bs) =
   CheckButtons <|
-    List.map (modifyMember vals CheckButton.setDisabled) bs
+    List.map (modifyMember vals CheckButton.setDisabled CheckButton.setActive) bs
 
 
-modifyMember : List Value -> (CheckButton.Model -> CheckButton.Model) -> CheckButton.Model -> CheckButton.Model
-modifyMember vs f cb =
+modifyMember : List Value -> (CheckButton.Model -> CheckButton.Model) -> (CheckButton.Model -> CheckButton.Model) -> CheckButton.Model -> CheckButton.Model
+modifyMember vs f f_ cb =
   if List.member (CheckButton.getValue cb) vs
      then f cb
-     else cb
+     else f_ cb
 
 
 {-| Get values of all check buttons.
