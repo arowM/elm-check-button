@@ -10,7 +10,7 @@ import Html.CssHelpers
 
 
 type CssClasses
-  = CheckButton
+  = CheckButtonWrapper
   | CheckButtonCore
   | CheckButtonLabel
 
@@ -33,10 +33,46 @@ css mynamespace =
       , fontSize (em 1)
       , boxShadow none
       ]
+    , (.) CheckButtonWrapper
+      [ display inlineBlock
+      ]
     , (.) CheckButtonCore
       [ display none
+      , checked
+        [ adjacentSiblings [
+          (.) CheckButtonLabel
+            [ backgroundColor darkColor
+            , borderColor darkColor
+            , backgroundColor mainColor
+            , borderColor mainColor
+            , color textColor
+            , fontWeight bold
+            ]
+          ]
+        ]
       ]
     , (.) CheckButtonLabel
       [ display block
+      , borderRadius (em 0.4)
+      , borderStyle solid
+      , backgroundColor darkColor
+      , borderColor darkColor
+      , textAlign center
+      , padding2 (em 0.3) (em 0.4)
+      , cursor pointer
+      , color white
       ]
     ]
+
+
+mainColor : Color
+mainColor = hex "ffaaaa"
+
+darkColor : Color
+darkColor = hex "cc8888"
+
+textColor : Color
+textColor = hex "554444"
+
+white : Color
+white = hex "ffffff"

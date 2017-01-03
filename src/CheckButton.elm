@@ -242,7 +242,7 @@ view namespace onToggle (CheckButton checkButton) =
       namespace ++ "-" ++ value
   in
     div
-      [ class [ CheckButton ]
+      [ class [ CheckButtonWrapper ]
       ]
       [ input
         [ type_ "checkbox"
