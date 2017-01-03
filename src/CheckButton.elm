@@ -20,7 +20,7 @@ module CheckButton
 
 {-| A button component that can be checked or unchecked.
   This module also expose a function to generate CSS
-  in manner of [`elm-css`](https://github.com/rtfeldman/elm-css).
+  in a manner of [`elm-css`](https://github.com/rtfeldman/elm-css).
 
 # Model
 
@@ -225,7 +225,7 @@ getLabel (CheckButton { label }) = label
 
   The first argument is a name space for
   [elm-css](https://github.com/rtfeldman/elm-css).
-  It supposed to be a unique value.
+  It is supposed to be a unique value.
 
   The second argument is called if a user checked/unchecked a check button.
 -}
