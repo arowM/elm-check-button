@@ -13,9 +13,8 @@ type CssClasses
   = ButtonSet
 
 
-css : Html.CssHelpers.Namespace String class id msg -> Stylesheet
-css mynamespace =
-  (stylesheet << namespace mynamespace.name)
+css : List Snippet
+css =
     [ everything
       [ boxSizing borderBox
       , fontFamily cursive

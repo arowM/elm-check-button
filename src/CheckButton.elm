@@ -15,7 +15,6 @@ module CheckButton
     , getValue
     , getLabel
     , view
-    , css
     )
 
 {-| A button component that can be checked or unchecked.
@@ -50,22 +49,17 @@ module CheckButton
 
 @docs view
 
-# CSS
-
-@docs css
-
 # Aliases
 @docs Namespace
 @docs Value
 
 -}
 
-import Css exposing (Stylesheet)
 import Html exposing (..)
 import Html.Attributes as Attributes exposing (..)
 import Html.CssHelpers as CssHelpers exposing (withNamespace)
 import Html.Events exposing (..)
-import CheckButton.Css as Css exposing (CssClasses(..))
+import CheckButton.Css as MyCss exposing (CssClasses(..))
 
 
 -- Exposed aliases
@@ -261,15 +255,3 @@ view namespace onToggle (CheckButton checkButton) =
         [ text checkButton.label
         ]
       ]
-
-
-
--- CSS
-
-
-{-| A CSS component.
-Please reffer to the [elm-css](https://github.com/rtfeldman/elm-css) for detail.
--}
-css : CssHelpers.Namespace String class id msg -> Stylesheet
-css =
-  Css.css

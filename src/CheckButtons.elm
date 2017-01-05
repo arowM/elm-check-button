@@ -13,7 +13,6 @@ module CheckButtons
     , map
     , filter
     , view
-    , css
     )
 
 {-| A set of button component that can be checked or unchecked.
@@ -51,18 +50,13 @@ module CheckButtons
 
 @docs view
 
-# CSS
-
-@docs css
-
 -}
 
 import CheckButton exposing (Namespace, Value)
-import Css exposing (Stylesheet)
 import Html exposing (..)
 import Html.CssHelpers as CssHelpers exposing (withNamespace)
 
-import CheckButtons.Css as Css exposing (CssClasses(..))
+import CheckButtons.Css as MyCss exposing (CssClasses(..))
 
 
 
@@ -210,15 +204,3 @@ renderCheckButton namespace checked onChange checkButton =
             List.filter ((/=) value) checked
   in
     CheckButton.view namespace onToggle checkButton
-
-
-
--- CSS
-
-
-{-| A CSS component.
-Please reffer to the [elm-css](https://github.com/rtfeldman/elm-css) for detail.
--}
-css : CssHelpers.Namespace String class id msg -> Stylesheet
-css =
-  Css.css
