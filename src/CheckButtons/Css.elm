@@ -14,8 +14,6 @@ module CheckButtons.Css
 -}
 
 import Css exposing (..)
-import Css.Namespace exposing (namespace)
-import Html.CssHelpers
 
 
 {-| A CSS classes.
