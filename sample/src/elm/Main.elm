@@ -5,7 +5,6 @@ import Html exposing (..)
 import CheckButton exposing (Value)
 import CheckButtons
 import Stylesheets exposing (mynamespace)
-import Debug
 
 
 
@@ -60,17 +59,15 @@ type Msg
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update message model =
-  let foo = Debug.log "model" model.buttons
-  in
-    case message of
-      OnChange vals ->
-        ( Debug.log "after" { model
-          | buttons =
-            model.buttons
-              |> CheckButtons.setChecked (Debug.log "checked" vals)
-          }
-        , Cmd.none
-        )
+  case message of
+    OnChange vals ->
+      ( { model
+        | buttons =
+          model.buttons
+            |> CheckButtons.setChecked vals
+        }
+      , Cmd.none
+      )
 
 
 
