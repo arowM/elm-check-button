@@ -27,22 +27,28 @@ Please reffer to the [elm-css](https://github.com/rtfeldman/elm-css) for detail.
 -}
 css : List Snippet
 css =
-    [ everything
-      [ boxSizing borderBox
-      , fontFamily cursive
-      , padding zero
-      , margin zero
-      , lineHeight (num 1.15)
-      , height auto
-      , width auto
-      , property "border" "none"
-      , textDecoration none
-      , fontWeight normal
-      , fontStyle normal
-      , fontSize (em 1)
-      , boxShadow none
-      ]
-    , (.) ButtonSet
-      [
+    [ (.) ButtonSet <| reset ++
+      [ children
+        [ everything reset
+        ]
       ]
     ]
+
+
+reset : List Mixin
+reset =
+  [ boxSizing borderBox
+  , fontFamily cursive
+  , padding zero
+  , margin zero
+  , lineHeight (num 1.15)
+  , height auto
+  , width auto
+  , property "border" "none"
+  , textDecoration none
+  , fontWeight normal
+  , fontStyle normal
+  , fontSize (em 1)
+  , boxShadow none
+  ]
+
