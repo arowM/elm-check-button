@@ -27,12 +27,13 @@ Please reffer to the [elm-css](https://github.com/rtfeldman/elm-css) for detail.
 -}
 css : List Snippet
 css =
-    [ (.) ButtonSet <| reset ++
-      [ children
-        [ everything reset
-        ]
-      ]
-    ]
+  [ (.) ButtonSet <|
+    reset
+      ++ [ children
+          [ everything reset
+          ]
+         ]
+  ]
 
 
 reset : List Mixin
@@ -51,4 +52,3 @@ reset =
   , fontSize (em 1)
   , boxShadow none
   ]
-

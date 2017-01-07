@@ -55,9 +55,7 @@ module CheckButtons
 import CheckButton exposing (Namespace, Value)
 import Html exposing (..)
 import Html.CssHelpers as CssHelpers exposing (withNamespace)
-
 import CheckButtons.Css as MyCss exposing (CssClasses(..))
-
 
 
 -- Model
@@ -65,12 +63,13 @@ import CheckButtons.Css as MyCss exposing (CssClasses(..))
 
 {-| An opaque type representing state of check buttons.
 -}
-type Model =
-  CheckButtons (List CheckButton.Model)
+type Model
+  = CheckButtons (List CheckButton.Model)
 
 
 toList : Model -> List CheckButton.Model
-toList (CheckButtons buttons) = buttons
+toList (CheckButtons buttons) =
+  buttons
 
 
 {-| A constructor for `Model`. It contains no buttons.
@@ -91,7 +90,7 @@ addTopButton b (CheckButtons bs) =
 -}
 addBottomButton : CheckButton.Model -> Model -> Model
 addBottomButton b (CheckButtons bs) =
-  CheckButtons <| bs ++ [b]
+  CheckButtons <| bs ++ [ b ]
 
 
 {-| Make only buttons with provided values are checked.
@@ -128,9 +127,10 @@ setDisabled vals (CheckButtons bs) =
 
 modifyMember : List Value -> (CheckButton.Model -> CheckButton.Model) -> (CheckButton.Model -> CheckButton.Model) -> CheckButton.Model -> CheckButton.Model
 modifyMember vs f f_ cb =
-  if List.member (CheckButton.getValue cb) vs
-     then f cb
-     else f_ cb
+  if List.member (CheckButton.getValue cb) vs then
+    f cb
+  else
+    f_ cb
 
 
 {-| Get values of all check buttons.
@@ -145,7 +145,9 @@ getValues (CheckButtons bs) =
 getCheckedValues : Model -> List Value
 getCheckedValues (CheckButtons bs) =
   List.map CheckButton.getValue
-  << List.filter CheckButton.getIsChecked <| bs
+    << List.filter CheckButton.getIsChecked
+  <|
+    bs
 
 
 {-| Apply a function to each check button.
@@ -177,30 +179,34 @@ filter f (CheckButtons bs) =
 view : Namespace -> (List Value -> msg) -> Model -> Html msg
 view namespace onChange buttons =
   let
-    { id, class, classList } = withNamespace namespace
+    { id, class, classList } =
+      withNamespace namespace
+
     renderCheckButton_ =
       renderCheckButton namespace
-        (getCheckedValues buttons) onChange
-
+        (getCheckedValues buttons)
+        onChange
   in
     div
       [ class [ ButtonSet ]
       ]
-      <| List.map renderCheckButton_ <| toList buttons
+    <|
+      List.map renderCheckButton_ <|
+        toList buttons
 
 
 renderCheckButton : Namespace -> List Value -> (List Value -> msg) -> CheckButton.Model -> Html msg
 renderCheckButton namespace checked onChange checkButton =
   let
-    value = CheckButton.getValue checkButton
+    value =
+      CheckButton.getValue checkButton
 
     onToggle : Bool -> msg
     onToggle add =
-      onChange
-        <| if add
-          then
-            value :: checked
-          else
-            List.filter ((/=) value) checked
+      onChange <|
+        if add then
+          value :: checked
+        else
+          List.filter ((/=) value) checked
   in
     CheckButton.view namespace onToggle checkButton

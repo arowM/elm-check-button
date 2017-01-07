@@ -190,25 +190,29 @@ setLabel label (CheckButton button) =
 {-| Get if a check button is checked.
 -}
 getIsChecked : Model -> Bool
-getIsChecked (CheckButton { isChecked }) = isChecked
+getIsChecked (CheckButton { isChecked }) =
+  isChecked
 
 
 {-| Get if a check button is active.
 -}
 getIsActive : Model -> Bool
-getIsActive (CheckButton { isActive }) = isActive
+getIsActive (CheckButton { isActive }) =
+  isActive
 
 
 {-| Get value of a button.
 -}
 getValue : Model -> Value
-getValue (CheckButton { value }) = value
+getValue (CheckButton { value }) =
+  value
 
 
 {-| Get label name of a button.
 -}
 getLabel : Model -> String
-getLabel (CheckButton { label }) = label
+getLabel (CheckButton { label }) =
+  label
 
 
 

@@ -29,39 +29,40 @@ Please reffer to the [elm-css](https://github.com/rtfeldman/elm-css) for detail.
 -}
 css : List Snippet
 css =
-    [ (.) CheckButtonWrapper <| reset ++
-      [ display inlineBlock
-      , children
-        [ everything reset
-        ]
-      ]
-    , (.) CheckButtonCore
-      [ display none
-      , checked
-        [ adjacentSiblings [
-          (.) CheckButtonLabel
-            [ backgroundColor darkColor
-            , borderColor darkColor
-            , backgroundColor mainColor
-            , borderColor mainColor
-            , color textColor
-            , fontWeight bold
-            ]
+  [ (.) CheckButtonWrapper <|
+    reset
+      ++ [ display inlineBlock
+         , children
+          [ everything reset
+          ]
+         ]
+  , (.) CheckButtonCore
+    [ display none
+    , checked
+      [ adjacentSiblings
+        [ (.) CheckButtonLabel
+          [ backgroundColor darkColor
+          , borderColor darkColor
+          , backgroundColor mainColor
+          , borderColor mainColor
+          , color textColor
+          , fontWeight bold
           ]
         ]
       ]
-    , (.) CheckButtonLabel
-      [ display block
-      , borderRadius (em 0.4)
-      , borderStyle solid
-      , backgroundColor darkColor
-      , borderColor darkColor
-      , textAlign center
-      , padding2 (em 0.3) (em 0.4)
-      , cursor pointer
-      , color white
-      ]
     ]
+  , (.) CheckButtonLabel
+    [ display block
+    , borderRadius (em 0.4)
+    , borderStyle solid
+    , backgroundColor darkColor
+    , borderColor darkColor
+    , textAlign center
+    , padding2 (em 0.3) (em 0.4)
+    , cursor pointer
+    , color white
+    ]
+  ]
 
 
 reset : List Mixin
@@ -81,14 +82,22 @@ reset =
   , boxShadow none
   ]
 
+
 mainColor : Color
-mainColor = hex "ffaaaa"
+mainColor =
+  hex "ffaaaa"
+
 
 darkColor : Color
-darkColor = hex "cc8888"
+darkColor =
+  hex "cc8888"
+
 
 textColor : Color
-textColor = hex "554444"
+textColor =
+  hex "554444"
+
 
 white : Color
-white = hex "ffffff"
+white =
+  hex "ffffff"
