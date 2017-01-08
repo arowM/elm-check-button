@@ -8,7 +8,7 @@
     ],
     "exposed-modules": [
         "CheckButton",
-        "CheckButtons.Css",
+        "CheckButton.Css",
         "CheckButtons",
         "CheckButtons.Css"
     ],
