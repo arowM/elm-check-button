@@ -17,8 +17,8 @@ module CheckButton
     , view
     )
 
-{-| A button component that can be checked or unchecked.
-  This module also expose a function to generate CSS
+{-| A button component that can be checked or unchecked ([demo](https://arowm.github.io/elm-check-button/)).
+  `CheckButton.Css` exposes a function to generate CSS
   in a manner of [`elm-css`](https://github.com/rtfeldman/elm-css).
 
 # Model
